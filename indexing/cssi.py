@@ -68,7 +68,7 @@ af = np.vstack(df.embeddings)
 print('Embedding shape:', af.shape)
 bf = df[['normLongitude', 'normLatitude']].astype(float).values
 
-params = [(50000,0.3,1.0,2)] # you can add extra tuples in this list in order to create many indexes in one run - useful since creating data over and over is slow
+params = [(10000,0.3,1.0,2)] # you can add extra tuples in this list in order to create many indexes in one run - useful since creating data over and over is slow
 for (size,F,sample,m) in params:
     # m = 2
     ao = af[:size]
@@ -104,7 +104,8 @@ for (size,F,sample,m) in params:
     np.savetxt(f'{dataset_savedir}/b.txt', b.astype(np.float64), delimiter=' ')
     np.savetxt(f'{dataset_savedir}/maxes.txt', np.vstack((tmax,tomax,smax)).astype(np.float64), delimiter=' ')
 
-    L = int(np.sqrt(0.01*size)*F) # number of clusters for each field (spatial and textual) 
+    L = int(np.sqrt(0.01*size)*F) # number of clusters for each field (spatial and textual)
+    print('L is ', L) 
 
     st = time.time()
     if sample!=1.0: # if sample is less than 1.0, use the sample specified for KMeans and add all the other samples later (using "predict")
