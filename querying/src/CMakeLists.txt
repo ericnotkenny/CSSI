@@ -17,11 +17,7 @@ add_subdirectory( algorithm )
 add_subdirectory( scan )
 add_subdirectory( rtree )
 add_subdirectory( s2r )
-add_subdirectory( csi )
-add_subdirectory( csi2 )
 add_subdirectory( csi3 )
-add_subdirectory( csia )
-add_subdirectory( csia2 )
 add_subdirectory( csia3 )
 
 # link everything together
@@ -29,5 +25,4 @@ add_executable( sstss main.cpp )
 # link boost
 target_link_libraries( sstss ${Boost_LIBRARIES} )
 # link my code
-target_link_libraries( sstss util algorithm scan rtree s2r csi csi2
-csi3 csia csia2 csia3 )
+target_link_libraries( sstss util algorithm scan rtree s2r csi3 csia3 )

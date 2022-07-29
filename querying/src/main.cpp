@@ -18,11 +18,7 @@
 #include "scan/scan.hpp"
 #include "rtree/rtreealg.hpp"
 #include "s2r/s2r.hpp"
-#include "csi/csi.hpp"
-#include "csia/csia.hpp"
-#include "csi2/csi2.hpp"
 #include "csi3/csi3.hpp"
-#include "csia2/csia2.hpp"
 #include "csia3/csia3.hpp"
 
 namespace po = boost::program_options;
@@ -113,7 +109,7 @@ int main( int argc, char** argv ) {
 	    (ARG_IDXDIR, po::value< std::string >(), "set index directory")
 	    (ARG_ALGORITHM, po::value< std::string >(),
 	     "choose algorithm(s), space separated; choices are:"
-	     " scan rtree s2r csi csi2 csi3 csia csi2 csia2 csia3")
+	     " scan rtree s2r csi3 csia3")
 	    (ARG_A, po::value< float >(), "the parameter alpha (aka known as lambda)")
 	    (ARG_M, po::value< int >(), "the parameter m")
 	    (ARG_L, po::value< int >(), "#uncombined clusters, here to put it into results file only")
@@ -250,41 +246,12 @@ int main( int argc, char** argv ) {
                         stats.alg_index = 2;
 			exact = true;
                     }
-  		    else if (next_algorithm.compare("csi") == 0)
-                    {
-			alg = new CSI(corpus);
-                        stats.algorithm = next_algorithm;
-                        stats.alg_index = 3;
-			exact = true;
-                    }
-  		    else if (next_algorithm.compare("csi2") == 0)
-                    {
-			alg = new CSI2(corpus);
-                        stats.algorithm = next_algorithm;
-                        stats.alg_index = 4;
-			exact = true;
-                    }
 		    else if (next_algorithm.compare("csi3") == 0)
                     {
 			alg = new CSI3(corpus);
                         stats.algorithm = next_algorithm;
                         stats.alg_index = 5;
 			exact = true;
-                    }
-
- 		    else if (next_algorithm.compare("csia") == 0)
-                    {
-			alg = new CSIA(corpus);
-                        stats.algorithm = next_algorithm;
-                        stats.alg_index = 6;
-			exact = false;
-                    }
- 		    else if (next_algorithm.compare("csia2") == 0)
-                    {
-			alg = new CSIA2(corpus);
-                        stats.algorithm = next_algorithm;
-                        stats.alg_index = 7;
-			exact = false;
                     }
  		    else if (next_algorithm.compare("csia3") == 0)
                     {
